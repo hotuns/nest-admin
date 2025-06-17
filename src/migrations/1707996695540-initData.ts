@@ -3,7 +3,7 @@ import path from 'node:path'
 
 import { MigrationInterface, QueryRunner } from 'typeorm'
 
-const sql = fs.readFileSync(path.join(__dirname, '../../deploy/sql/nest_admin.sql'), 'utf8')
+const sql = fs.readFileSync(path.join(__dirname, '../../deploy/sql/postger.sql'), 'utf8')
 
 export class InitData1707996695540 implements MigrationInterface {
   name = 'InitData1707996695540'

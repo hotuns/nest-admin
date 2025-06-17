@@ -48,6 +48,26 @@ services:
     networks:
       - nest_admin_net
 
+  postgres:
+    image: postgres:latest
+    container_name: nest-admin-postgres
+    restart: always
+    env_file:
+      - .env
+      - .env.development
+    environment:
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      # - '${DB_PORT}:5432'
+      - '5432:5432'
+    volumes:
+      - ./__data/postgres/:/var/lib/postgresql/data/
+      - ./deploy/sql/:/docker-entrypoint-initdb.d/
+    networks:
+      - nest_admin_net
+
   # nest-admin-server:
   #   # build: 从当前路径构建镜像
   #   build:
